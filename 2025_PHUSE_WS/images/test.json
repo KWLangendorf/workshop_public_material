@@ -14,7 +14,7 @@
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact.png"
 },
 {"name":"slide_dataContact_ScheduledActivityInstance",
-"query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc, r1, bc_prop, r2, dc, r3, sai",
+      "query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc, r1, bc_prop, r2, dc, r3, sai",
 "query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.uri as `Data Contract`, sai.name as `Scheduled Activity Instance`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact_ScheduledActivityInstance.png"
 },
@@ -30,6 +30,6 @@
 },
 {"name":"slide_dataContact_ScheduledActivityInstance_Screen1_with_data",
 "query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH (dc)<-[r4]-(dp:DataPoint)-[r5]->(subj:Subject) RETURN bc, r1, bc_prop, r2, dc, r3, sai, r4, dp, r5, subj",
-"query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH (dc)<-[r4]-(dp:DataPoint)-[r5]->(subj:Subject) RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.uri as `Data Contract`, sai.name as `Scheduled Activity Instance`, dp.value as `Data Point Value`, subj.subject_id as `Subject ID`",
+"query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH (dc)<-[r4]-(dp:DataPoint)-[r5]->(subj:Subject) RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.uri as `Data Contract`, sai.name as `Scheduled Activity Instance`, dp.value as `Data Point Value`, subj.identifier as `Subject ID`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact_ScheduledActivityInstance_Screen1_with_data.png"
 }]
