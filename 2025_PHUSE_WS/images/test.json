@@ -1,13 +1,16 @@
 [{"name":"slide_SDTM_to_BCs",
 "query":"match(domain:Domain)-[r1]->(var:Variable)-[r2]->(crm:CRMNode)<-[r3]-(bc_prop:BiomedicalConceptProperty)<-[r4]-(bc:BiomedicalConcept) where domain.name in ['VS','AE'] and crm.sdtm='--LOC' RETURN domain, r1, var, r2, crm, r3, bc_prop, r4, bc",
+"query_table":"match(domain:Domain)-[r1]->(var:Variable)-[r2]->(crm:CRMNode)<-[r3]-(bc_prop:BiomedicalConceptProperty)<-[r4]-(bc:BiomedicalConcept) where domain.name in ['VS','AE'] and crm.sdtm='--LOC' RETURN domain.name as Domain, var.name as Variable, crm.sdtm as `CRM Node`, bc_prop.generic_name as `BC Property`, bc.name as `Biomedical Concept`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_SDTM_to_BCs.png"
 },
 {"name":"slide_TEMP_to_SDTM",
 "query":"MATCH (bc_prop:BiomedicalConceptProperty)<-[r1]-(bc:BiomedicalConcept)<-[r2]-(act:Activity)<-[r6]-(SD:StudyDesign)-[r7]->(bc) where bc.name='Temperature' OPTIONAL match(bc)<-[r8]-(domain:Domain)-[r3]->(var:Variable)-[r4]->(crm:CRMNode)<-[r5]-(bc_prop) RETURN bc_prop, r1, bc, r2, act, r6, SD, r7, domain, r8, var, r3, crm, r4, r5",
+"query_table":"MATCH (bc_prop:BiomedicalConceptProperty)<-[r1]-(bc:BiomedicalConcept)<-[r2]-(act:Activity)<-[r6]-(SD:StudyDesign)-[r7]->(bc) where bc.name='Temperature' OPTIONAL match(bc)<-[r8]-(domain:Domain)-[r3]->(var:Variable)-[r4]->(crm:CRMNode)<-[r5]-(bc_prop) RETURN bc.name as `Biomedical Concept`, act.name as Activity, SD.name as `Study Design`, domain.name as Domain, var.name as Variable, crm.sdtm as `CRM Node`, bc_prop.generic_name as `BC Property`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_TEMP_to_SDTM.png"
 },
 {"name":"slide_dataContact",
 "query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc, r1, bc_prop, r2, dc",
+"query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.name as `Data Contract`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact.png"
 },
 {"name":"slide_dataContact_ScheduledActivityInstance",
@@ -16,13 +19,16 @@
 },
 {"name":"slide_dataContact_ScheduledActivityInstance_Timeline",
 "query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance)where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH(sai)-[r4]->(epoch:StudyEpoch),(sai)-[r5]->(encounter:Encounter),(sai)<-[r6]-(timeline:ScheduleTimeline)-[r7]->(timing:Timing)-[r8]->(sai) RETURN bc, r1, bc_prop, r2, dc, r3, sai, r4, epoch, r5, encounter, r6, timeline, r7, timing, r8",
+"query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance)where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH(sai)-[r4]->(epoch:StudyEpoch),(sai)-[r5]->(encounter:Encounter),(sai)<-[r6]-(timeline:ScheduleTimeline)-[r7]->(timing:Timing)-[r8]->(sai) RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.name as `Data Contract`, sai.name as `Scheduled Activity Instance`, epoch.name as `Study Epoch`, encounter.name as `Encounter`, timeline.name as `Schedule Timeline`, timing.name as `Timing`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact_ScheduledActivityInstance_Timeline.png"
 },
 {"name":"slide_dataContact_ScheduledActivityInstance_Screen1",
 "query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc, r1, bc_prop, r2, dc, r3, sai",
+"query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.name as `Data Contract`, sai.name as `Scheduled Activity Instance`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact_ScheduledActivityInstance_Screen1.png"
 },
 {"name":"slide_dataContact_ScheduledActivityInstance_Screen1_with_data",
 "query":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH (dc)<-[r4]-(dp:DataPoint)-[r5]->(subj:Subject) RETURN bc, r1, bc_prop, r2, dc, r3, sai, r4, dp, r5, subj",
+"query_table":"MATCH (bc:BiomedicalConcept)-[r1]->(bc_prop:BiomedicalConceptProperty)<-[r2]-(dc:DataContract)-[r3]->(sai:ScheduledActivityInstance) where bc.name in ['Informed Consent Obtained','Date of Birth'] and bc_prop.generic_name in ['--STDTC', 'BRTHDTC'] OPTIONAL MATCH (dc)<-[r4]-(dp:DataPoint)-[r5]->(subj:Subject) RETURN bc.name as `Biomedical Concept`, bc_prop.generic_name as `BC Property`, dc.name as `Data Contract`, sai.name as `Scheduled Activity Instance`, dp.value as `Data Point Value`, subj.subject_id as `Subject ID`",
 "image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_dataContact_ScheduledActivityInstance_Screen1_with_data.png"
 }]
