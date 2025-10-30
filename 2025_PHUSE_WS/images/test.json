@@ -1,6 +1,6 @@
-[{"name":"slide_SDTM_to_BC",
+[{"name":"slide_SDTM_to_BCs",
 "query":"match(domain:Domain)-[r1]->(var:Variable)-[r2]->(crm:CRMNode)<-[r3]-(bc_prop:BiomedicalConceptProperty)<-[r4]-(bc:BiomedicalConcept) where domain.name in ['VS','AE'] and crm.sdtm='--LOC' RETURN *",
-"image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_SDTM_to_BC.png"
+"image_url":"https://kwlangendorf.github.io/workshop_public_material/2025_PHUSE_WS/images/slide_SDTM_to_BCs.png"
 },
 {"name":"slide_TEMP_to_SDTM",
 "query":"MATCH (bc_prop:BiomedicalConceptProperty)<-[r1]-(bc:BiomedicalConcept)<-[r2]-(act:Activity)<-[r6]-(SD:StudyDesign)-[r7]->(bc) where bc.name='Temperature' OPTIONAL match(bc)<-[r8]-(domain:Domain)-[r3]->(var:Variable)-[r4]->(crm:CRMNode)<-[r5]-(bc_prop) RETURN *",
